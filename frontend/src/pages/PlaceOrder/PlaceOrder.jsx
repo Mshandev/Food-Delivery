@@ -55,9 +55,11 @@ const PlaceOrder = () => {
 
   useEffect(()=>{
     if(!token){
+      toast.error("Please Login first")
       navigate("/cart")
     }
     else if(getTotalCartAmount()===0){
+      toast.error("Please Add Items to Cart");
       navigate("/cart")
     }
   },[token])

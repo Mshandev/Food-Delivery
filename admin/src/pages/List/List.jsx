@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { StoreContext } from "../../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 
-const List = ({url}) => {
+const List = ({ url }) => {
+  const navigate = useNavigate();
+  const { token,admin } = useContext(StoreContext);
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
@@ -15,16 +20,24 @@ const List = ({url}) => {
     }
   };
 
-  const removeFood=async(foodId)=>{
-    const response= await axios.post(`${url}/api/food/remove`,{id:foodId});
+  const removeFood = async (foodId) => {
+    const response = await axios.post(
+      `${url}/api/food/remove`,
+      { id: foodId },
+      { headers: { token } }
+    );
     await fetchList();
     if (response.data.success) {
-      toast.success(response.data.message)
+      toast.success(response.data.message);
     } else {
       toast.error("Error");
     }
-  }
+  };
   useEffect(() => {
+    if (!admin && !token) {
+      toast.error("Please Login First");
+      navigate("/");
+    }
     fetchList();
   }, []);
 
@@ -39,16 +52,18 @@ const List = ({url}) => {
           <b>Price</b>
           <b>Action</b>
         </div>
-        {list.map((item,index)=>{
-          return(
+        {list.map((item, index) => {
+          return (
             <div key={index} className="list-table-format">
-              <img src={`${url}/images/`+item.image} alt="" />
+              <img src={`${url}/images/` + item.image} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>${item.price}</p>
-              <p onClick={()=>removeFood(item._id)} className="cursor">X</p>
+              <p onClick={() => removeFood(item._id)} className="cursor">
+                X
+              </p>
             </div>
-          )
+          );
         })}
       </div>
     </div>

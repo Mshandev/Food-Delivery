@@ -53,53 +53,65 @@ const placeOrder = async (req, res) => {
   }
 };
 
-const verifyOrder= async(req,res)=>{
-  const {orderId,success}=req.body;
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body;
   try {
-    if(success=="true"){
-      await orderModel.findByIdAndUpdate(orderId,{payment:true})
-      res.json({success:true,message:"Paid"});
-    }else{
+    if (success == "true") {
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      res.json({ success: true, message: "Paid" });
+    } else {
       await orderModel.findByIdAndDelete(orderId);
-      res.json({success:false,message:"Not Paid"});
+      res.json({ success: false, message: "Not Paid" });
     }
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"});
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
 // user orders for frontend
-const userOrders=async(req,res)=>{
+const userOrders = async (req, res) => {
   try {
-    const orders= await orderModel.find({userId:req.body.userId});
-    res.json({success:true,data:orders})
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders });
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"});
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
 // Listing orders for admin pannel
-const listOrders=async(req,res)=>{
+const listOrders = async (req, res) => {
   try {
-    const orders= await orderModel.find({});
-    res.json({success:true,data:orders})
+    let userData = await userModel.findById(req.body.userId);
+    if (userData && userData.role === "admin") {
+      const orders = await orderModel.find({});
+      res.json({ success: true, data: orders });
+    } else {
+      res.json({ success: false, message: "You are not admin" });
+    }
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"})
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
 // api for updating status
-const updateStatus= async(req,res)=>{
+const updateStatus = async (req, res) => {
   try {
-    await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
-    res.json({success:true,message:"Status Updated Successfully"})
+    let userData = await userModel.findById(req.body.userId);
+    if (userData && userData.role === "admin") {
+      await orderModel.findByIdAndUpdate(req.body.orderId, {
+        status: req.body.status,
+      });
+      res.json({ success: true, message: "Status Updated Successfully" });
+    }else{
+      res.json({ success: false, message: "You are not an admin" });
+    }
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"});
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
-export { placeOrder,verifyOrder,userOrders,listOrders, updateStatus };
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
