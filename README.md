@@ -31,13 +31,15 @@ This repository hosts the source code for TOMATO, a dynamic food ordering websit
 
 ![Hero](https://i.ibb.co/59cwY75/food-hero.png)
 
+
 ![Products](https://i.ibb.co/JnNQPyQ/food-products.png)
+
 
 ![Cart](https://i.ibb.co/t2LrQ8p/food-cart.png)
 
+
 ![Login](https://i.ibb.co/s6PgwkZ/food-login.png)
 
-![Admin](https://i.ibb.co/fFR8bqD/food-admin-1.png)
 
 ## Run Locally
 
@@ -80,16 +82,13 @@ Setup Environment Vaiables
 
 Setup the Frontend and Backend URL
    - App.jsx in Admin folder
-     ```const url = YOUR_BACKEND_URL
-     ```
-
+      const url = YOUR_BACKEND_URL
+     
   - StoreContext.js in Frontend folder
-     ```const url = YOUR_BACKEND_URL
-     ```
+      const url = YOUR_BACKEND_URL
 
   - orderController in Backend folder
-     ```const frontend_url = YOUR_FRONTEND_URL
-     ```
+      const frontend_url = YOUR_FRONTEND_URL 
 
 Start the Backend server
 
