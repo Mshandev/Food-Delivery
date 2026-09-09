@@ -1,0 +1,91 @@
+/* Shares the same auth-page / auth-container styles defined in Login.css.
+   Both pages are mounted independently so we duplicate the rules here. */
+
+.auth-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-container {
+  width: max(23vw, 330px);
+  color: #808080;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-title h2 {
+  color: #000;
+  font-size: 22px;
+}
+
+.auth-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-inputs input {
+  outline: none;
+  border: 1px solid #c9c9c9;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.auth-container button[type="submit"] {
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  background-color: tomato;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-container button[type="submit"]:hover {
+  background-color: #e5391a;
+}
+
+.auth-condition {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: -15px;
+}
+
+.auth-condition input {
+  margin-top: 5px;
+}
+
+.auth-container p a {
+  color: tomato;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth-container p a:hover {
+  text-decoration: underline;
+}

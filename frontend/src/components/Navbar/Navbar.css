@@ -131,3 +131,27 @@
         display: none;
     }
 }
+/* Guest CTA buttons — two side-by-side buttons for Sign in / Sign up */
+.navbar-guest-ctas {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar .btn-signup {
+    background-color: tomato;
+    color: white;
+    border: 1px solid tomato;
+}
+
+.navbar .btn-signup:hover {
+    background-color: #e5391a;
+    border-color: #e5391a;
+}
+
+/* Placeholder items in the authenticated profile dropdown */
+.nav-profile-dropdown .dropdown-placeholder {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
+}
