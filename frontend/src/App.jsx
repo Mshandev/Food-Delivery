@@ -10,8 +10,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
+import { useHashScroll } from "./hooks/useHashScroll";
 
 const App = () => {
+  useHashScroll();
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
