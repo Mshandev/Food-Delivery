@@ -128,3 +128,8 @@ Just raise an issue, and we will discuss it.
 ## Feedback
 
 If you have any feedback, please reach out to me [here](https://www.linkedin.com/in/muhammad-shan-full-stack-developer/)
+## Setup Instructions
+1. Clone the repository
+2. Open the project folder
+3. Run using a local server or browser
+
